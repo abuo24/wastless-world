@@ -1,6 +1,7 @@
 package uz.wastlessworld.app.service;
 
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -47,9 +48,9 @@ public class OrderService {
         return result.success(orderRepository.findAll());
     }
 
-    public Result getAllAds() {
+    public List<Order> getAllAds() {
         List<Order> orders = orderRepository.findAllByStatusAndBuyUserIsNull(Status.PROCESSING);
-        return result.success(orders);
+        return orders;
     }
 
     public Result getMeBuyCategories() {

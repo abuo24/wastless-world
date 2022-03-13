@@ -63,9 +63,8 @@ public class UserController {
     }
 
     @GetMapping("/ads/")
-    public ResponseEntity<Result> getAllAds() {
-        Result result = orderService.getAllAds();
-        return ResponseEntity.status(result.isSuccess() ? 200 : 409).body(result);
+    public ResponseEntity<?> getAllAds() {
+        return ResponseEntity.ok(orderService.getAllAds());
     }
 
     @GetMapping("/summa/{categoryId}")
