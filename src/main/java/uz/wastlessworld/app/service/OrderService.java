@@ -48,13 +48,13 @@ public class OrderService {
         return result.success(orderRepository.findAll());
     }
 
-    public List<Order> getAllAds() {
+    public Result getAllAds() {
         List<Order> orders = orderRepository.findAllByStatusAndBuyUserIsNull(Status.PROCESSING);
-        return orders;
+        return result.success(orders);
     }
 
     public Result getMeBuyCategories() {
-        List<Order> orders = orderRepository.findAllByBuyUser_Username(SecurityUtils.getCurrentUsername().orElseThrow(()-> new ResourceNotFoundException("not found")));
+        List<Order> orders = orderRepository.findAllByBuyUser_Username(SecurityUtils.getCurrentUsername().orElseThrow(() -> new ResourceNotFoundException("not found")));
         return result.success(orders);
     }
 
