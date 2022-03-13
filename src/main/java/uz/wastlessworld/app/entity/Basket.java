@@ -4,6 +4,7 @@ package uz.wastlessworld.app.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.*;
 
 import javax.persistence.CascadeType;
@@ -26,7 +27,8 @@ public class Basket {
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     protected UUID id;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @ToString.Exclude
+    @OneToOne(fetch = FetchType.EAGER)
     private Category category;
 
     @LazyCollection(LazyCollectionOption.FALSE)
